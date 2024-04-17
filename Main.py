@@ -72,6 +72,8 @@ cbar.set_label('Duration time')
 plt.xlabel('X Coordinate (pixels)')
 plt.ylabel('Y Coordinate (pixels)')
 plt.title('Scatter Plot of Eye Fixations with Color Coded Duration time')
+plt.show()
+
 
 # Normalize the gaze duration for visibility
 data["NormalizedDuration"] = (
