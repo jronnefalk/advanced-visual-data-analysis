@@ -19,9 +19,14 @@ Duration = data['GazeEventDuration(mS)']
 
 # Plotting the data for gazepoints in x and y
 plt.scatter(x, y)
-plt.xlabel("X Coordinate (pixels)")
-plt.ylabel("Y Coordinate (pixels)")
-plt.title("Visualization of Gaze Points")
+plt.xlabel("X coordinate of gaze point in pixels")
+plt.ylabel("Y coordinate of gaze point in pixels")
+plt.show()
+
+# Scatter plot with adjusted alpha
+plt.scatter(x, y, alpha=0.25)
+plt.xlabel("X coordinate of gaze point in pixels")
+plt.ylabel("Y coordinate of gaze point in pixels")
 plt.show()
 
 
@@ -67,5 +72,28 @@ cbar.set_label('Duration time')
 plt.xlabel('X Coordinate (pixels)')
 plt.ylabel('Y Coordinate (pixels)')
 plt.title('Scatter Plot of Eye Fixations with Color Coded Duration time')
+
+# Normalize the gaze duration for visibility
+data["NormalizedDuration"] = (
+    data["GazeEventDuration(mS)"] / data["GazeEventDuration(mS)"].max()
+)
+
+# Apply linear scaling with a controlled minimum size
+data["PointSizes"] = (
+    data["NormalizedDuration"] * 500
+)  # Scale factor adjusted for visibility
+data["PointSizes"] = data["PointSizes"].apply(
+    lambda x: max(x, 10)
+)  # Set a minimum size
+
+# Scatter plot where the size of each point is based on the linearly scaled gaze duration
+plt.scatter(
+    data["GazePointX(px)"],
+    data["GazePointY(px)"],
+    alpha=0.25,
+    s=data["PointSizes"],
+)
+plt.xlabel("X coordinate of gaze point in pixels")
+plt.ylabel("Y coordinate of gaze point in pixels")
 plt.show()
 
