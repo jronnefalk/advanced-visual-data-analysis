@@ -65,7 +65,7 @@ def extract_features(images):
 
 
 # Load images
-folder_path = "./images"
+folder_path = "TNM098\Labb 3\images"
 images, filenames = load_images_from_folder(folder_path)
 
 # Extract comprehensive feature vectors
