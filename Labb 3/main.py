@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 from scipy.spatial import distance_matrix
+import matplotlib.pyplot as plt
 
 
 def load_images_from_folder(folder):
@@ -43,14 +44,16 @@ def extract_features(images):
             (3 * w // 4, 3 * h // 4),
         ]  # corners
         for x, y in points:
-            region = img[y - 10 : y + 10, x - 10 : x + 10]
-            mean_point = cv2.mean(region)[:3]
+            color_region = img[y - 10 : y + 10, x - 10 : x + 10]
+            mean_point = cv2.mean(color_region)[:3]
             features.extend(mean_point)
 
         # 4. Luminance distribution
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        luminance_mean = np.mean(gray)
-        features.append(luminance_mean)
+        for x, y in points:
+            gray_region = gray[y - 10 : y + 10, x - 10 : x + 10]
+            luminance_mean = np.mean(gray_region)
+            features.append(luminance_mean)
 
         # 5. Edge positions and orientations
         edges = cv2.Canny(img, 100, 200)
@@ -62,15 +65,15 @@ def extract_features(images):
 
 
 # Load images
-folder_path = "./images"
+folder_path = "Labb 3\images"
 images, filenames = load_images_from_folder(folder_path)
 
 # Extract comprehensive feature vectors
 feature_vectors = extract_features(images)
 
 # Display feature vectors
-for filename, feature_vector in zip(filenames, feature_vectors):
-    print(f"{filename}: Feature Vector = {feature_vector}")
+# for filename, feature_vector in zip(filenames, feature_vectors):
+#     print(f"{filename}: Feature Vector = {feature_vector}")
 
 # Compare image 04.jpg to others
 reference_idx = filenames.index("04.jpg")
@@ -84,3 +87,19 @@ sorted_indices = np.argsort(distances)
 print("\nImages ranked by similarity to '04.jpg':")
 for idx in sorted_indices:
     print(f"{filenames[idx]} with distance {distances[idx]}")
+
+# Extract comprehensive feature vectors
+feature_vectors = extract_features(images)
+
+# Create a distance matrix
+dist_matrix = distance_matrix(feature_vectors, feature_vectors)
+
+# Plot distance matrix as an image with annotated axes
+plt.imshow(dist_matrix, cmap='viridis', interpolation='nearest')
+plt.colorbar(label='Distance')
+plt.title('Distance Matrix')
+plt.xlabel('Image Index')
+plt.ylabel('Image Index')
+plt.xticks(ticks=np.arange(len(filenames)), labels=filenames, rotation=90)
+plt.yticks(ticks=np.arange(len(filenames)), labels=filenames)
+plt.show()
