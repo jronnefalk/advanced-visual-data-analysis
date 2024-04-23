@@ -3,12 +3,13 @@ import numpy as np
 import os
 from scipy.spatial import distance_matrix
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
 
 
 def load_images_from_folder(folder):
     images = []
     filenames = []
-    for filename in os.listdir(folder):
+    for filename in sorted(os.listdir(folder)):
         if filename.endswith(".jpg"):
             img = cv2.imread(os.path.join(folder, filename))
             if img is not None:
@@ -61,11 +62,50 @@ def extract_features(images):
         features.append(edge_count)
 
         feature_vectors.append(features)
+
+    # Convert feature vectors list to a numpy array for scaling
+    feature_vectors = np.array(feature_vectors)
+
+    # Normalize features to the range [0, 1]
+    scaler = MinMaxScaler()
+    feature_vectors = scaler.fit_transform(feature_vectors)
+
+    # # Create a weights vector that matches the number of features
+    # weights = np.array(
+    #     [
+    #         0.6,
+    #         0.6,
+    #         0.6,  # Color content weights (RGB)
+    #         0.1,
+    #         0.1,
+    #         0.1,  # Central point color distribution weights (RGB)
+    #         0.4,
+    #         0.4,
+    #         0.4,  # Point 1 color distribution weights (RGB)
+    #         0.4,
+    #         0.4,
+    #         0.4,  # Point 2 color distribution weights (RGB)
+    #         0.4,
+    #         0.4,
+    #         0.4,  # Point 3 color distribution weights (RGB)
+    #         0.4,
+    #         0.4,
+    #         0.4,  # Point 4 color distribution weights (RGB)
+    #         0.9,
+    #         0.9,
+    #         0.9,
+    #         0.9,  # Luminance distribution weights (1 per point)
+    #         0.1,  # Edge count weight
+    #     ]
+    # )
+
+    # weighted_feature_vectors = feature_vectors * weights
+    # weighted_feature_vectors
     return feature_vectors
 
 
 # Load images
-folder_path = "TNM098\Labb 3\images"
+folder_path = "./images"
 images, filenames = load_images_from_folder(folder_path)
 
 # Extract comprehensive feature vectors
@@ -88,18 +128,24 @@ print("\nImages ranked by similarity to '04.jpg':")
 for idx in sorted_indices:
     print(f"{filenames[idx]} with distance {distances[idx]}")
 
-# Extract comprehensive feature vectors
-feature_vectors = extract_features(images)
-
 # Create a distance matrix
 dist_matrix = distance_matrix(feature_vectors, feature_vectors)
 
-# Plot distance matrix as an image with annotated axes
-plt.imshow(dist_matrix, cmap="viridis", interpolation="nearest")
+# Determine your fixed color bar range
+color_bar_max_value = 3.5
+
+# Plot distance matrix as an image with annotated axes and a fixed color bar range
+plt.imshow(
+    dist_matrix,
+    cmap="viridis",
+    interpolation="nearest",
+    vmin=0,
+    vmax=color_bar_max_value,
+)
 plt.colorbar(label="Distance")
 plt.title("Distance Matrix")
 plt.xlabel("Image Index")
 plt.ylabel("Image Index")
-plt.xticks(ticks=np.arange(len(filenames)), labels=filenames, rotation=90)
-plt.yticks(ticks=np.arange(len(filenames)), labels=filenames)
+plt.xticks(ticks=np.arange(len(filenames)), labels=(filenames), rotation=90)
+plt.yticks(ticks=np.arange(len(filenames)), labels=reversed(filenames))
 plt.show()
