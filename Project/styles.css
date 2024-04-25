@@ -1,0 +1,21 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Chart container styles */
+#chart {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+/* Add any additional styles as needed */
