@@ -1,18 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load data with error handling
-try:
-    cc_data = pd.read_csv("MC2/cc_data.csv", encoding="latin1")
-    print("Credit card data loaded successfully.")
-except UnicodeDecodeError:
-    print("Error loading credit card data. Please check the encoding.")
 
-try:
-    loyalty_data = pd.read_csv("MC2/loyalty_data.csv", encoding="latin1")
-    print("Loyalty card data loaded successfully.")
-except UnicodeDecodeError:
-    print("Error loading loyalty card data. Please check the encoding.")
+cc_data = pd.read_csv("MC2/cc_data.csv", encoding="latin1")
+print("Credit card data loaded successfully.")
+
+loyalty_data = pd.read_csv("MC2/loyalty_data.csv", encoding="latin1")
+print("Loyalty card data loaded successfully.")
 
 # Display the first few rows of the datasets
 print(cc_data.head())
