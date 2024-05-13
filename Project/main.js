@@ -1,54 +1,59 @@
-// Read cc_data.csv
-fetch("/MC2/cc_data.csv")
-  .then((response) => response.text())
-  .then((cc_data) => {
-    console.log("Data read successfully.");
-    processData(cc_data);
-  })
-  .catch((error) => {
-    console.error("Error reading data. Please provide a different path.");
-  });
+import fs from "fs";
 
-// Read loyalty_data.csv
-fetch("/MC2/loyalty_data.csv")
-  .then((response) => response.text())
-  .then((loyalty_data) => {
-    console.log("Data read successfully.");
-    processData(loyalty_data);
-  })
-  .catch((error) => {
-    console.error("Error reading data. Please provide a different path.");
-  });
+// Importera fs-modulen för att läsa CSV-filer
+const fs = require("fs");
 
-// Function to process the data
+// Läs in cc_data.csv
+fs.readFile("Project/MC2/cc_data.csv", "latin1", (err, cc_data) => {
+  if (err) {
+    console.log("Fel vid inläsning av data. Ange en annan väg.");
+    return;
+  }
+  console.log("Data inläst korrekt.");
+  // Bearbeta cc_data
+  processData(cc_data);
+});
+
+// Läs in loyalty_data.csv
+fs.readFile("Project/MC2/loyalty_data.csv", "latin1", (err, loyalty_data) => {
+  if (err) {
+    console.log("Fel vid inläsning av data. Ange en annan väg.");
+    return;
+  }
+  console.log("Data inläst korrekt.");
+  // Bearbeta loyalty_data
+  processData(loyalty_data);
+});
+
+// Funktion för att bearbeta datan
 function processData(data) {
   const rows = data.split("\n");
   const places_data = {};
 
-  // Loop through each row of the data
+  // Loopa över varje rad i datan
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i].split(",");
     const timestamp = row[0];
     const location = row[1];
     const price = parseFloat(row[2]);
     const id = row[3];
-    // Create a new list for the location if it doesn't already exist
+    // Skapa en ny lista för platsen om den inte redan finns
     if (!places_data[location]) {
       places_data[location] = [];
     }
-    // Add time, price, and last 4 of credit card number or loyalty number to the location's data
+    // Lägg till tid, pris och sista 4 av kreditkortsnummer eller lojalitetsnummer till platsens data
     places_data[location].push({
       Timestamp: timestamp,
       Price: price,
       ID: id,
     });
   }
-  // Display the result
+  // Visa resultatet
   for (const place in places_data) {
-    console.log(`Place: ${place}`);
+    console.log(`Plats: ${place}`);
     for (const entry of places_data[place]) {
       console.log(
-        `Timestamp: ${entry.Timestamp}, Price: ${entry.Price}, ID: ${entry.ID}`
+        `Tidpunkt: ${entry.Timestamp}, Pris: ${entry.Price}, ID: ${entry.ID}`
       );
     }
   }
