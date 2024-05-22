@@ -1,44 +1,45 @@
 id,location,latitud,longitud
-0,Abila Airport,
-1,Abila Scrapyard
-36,Abila Park
-42,Abila Hospital
-3,Ahaggo Museum
-4,Albert's Fine Clothing
-41,Arkadiou Park
-5,Bean There Done That
-6,Brew've Been Served
-7,Brewed Awakenings
-9,Chostus Hotel
-10,Coffee Camelon,
-11,Coffee Shack,
-12,Daily Dealz
-13,Desafio Golf Course
-14,Frank's Fuel
-15,Frydos Autosupply n'More
-16,Gelatogalore
-17,General Grocer
-34,Gastech,36.04802182,24.87956884
-18,Guy's Gyros
-19,Hallowed Grounds
-20,Hippokampos
-43,House North
-44,House East
-21,Jack's Magical Beans
-22,Kalami Kafenion
-23,Katerina's Café
-24,Kronos Mart
-25,Kronos Pipe and Irrigation
-26,Maximum Iron and Steel
-27,Nationwidde Refinery
-28,Octavio's Office Supplies
-29,Ouzeri Elian
-38,Parla Park
-37,Pilau Park
-30,Roberts and Sons
-35,Spetson Park
-31,Shoppers' Delight
-32,Stewart and Sons Fabrication
-33,U-Pump
-39,Taxiarchon Park
-40,Sannan Park
+0,Abila Airport,24.829, 36.052
+1,Abila Scrapyard,24.847,36.075
+36,Abila Park,24.851,36.057
+42,Abila Hospital,24.881,36.057
+3,Ahaggo Museum,24.878,36.076
+4,Albert's Fine Clothing,24.858,36.077
+41,Arkadiou Park,24.889,36.067
+5,Bean There Done That,24.852,36.083
+6,Brew've Been Served,24.903,36.057
+7,Brewed Awakenings,,
+43,Carlyle Chemical Inc,24.883,36.060
+9,Chostus Hotel,24.894,36.070
+10,Coffee Camelon,24.891,36.055
+11,Coffee Shack,24.860,36.074
+12,Daily Dealz,,
+13,Desafio Golf Course,24.865,36.090
+14,Frank's Fuel,24.841,36.074
+15,Frydos Autosupply n'More,24.905,36.059
+16,Gelatogalore,24.863,36.061
+17,General Grocer,24.858,36.061
+34,Gastech,24.881,36.048
+18,Guy's Gyros,24.898,36.059
+19,Hallowed Grounds,24.885,36.065
+20,Hippokampos,,
+43,House North,24.860,36.086
+44,House East,24.905,36.065
+21,Jack's Magical Beans,24.874,36.068
+22,Kalami Kafenion,,
+23,Katerina's Café,24.899,36.056
+24,Kronos Mart,24.849,36.067
+25,Kronos Pipe and Irrigation,,
+26,Maximum Iron and Steel,24.839,36.064
+27,Nationwidde Refinery,24.886,36.057
+28,Octavio's Office Supplies,,
+29,Ouzeri Elian,24.873,36.054
+38,Parla Park,24.856,36.090
+37,Pilau Park,24.843,36.056
+30,Roberts and Sons,24.853,36.064
+35,Spetson Park,24.867,36.079
+31,Shoppers' Delight,,
+32,Stewart and Sons Fabrication,,
+33,U-Pump,24.869,36.069
+39,Taxiarchon Park,24.875,36.071
+40,Sannan Park,24.901,36.068
