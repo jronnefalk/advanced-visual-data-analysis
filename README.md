@@ -1,6 +1,6 @@
 # VAST Challenge 2021 - Kronos
 
-This project was part of the **Advanced Visual Data Analysis** course, where we participated in solving the **VAST Challenge 2021 - Kronos**. The challenge involved analyzing complex data to uncover insights about activities at the fictional island of Kronos.
+This project was part of the **Advanced Visual Data Analysis** course, where we participated in solving the **VAST Challenge 2021 - The Kronos Incident**. The challenge involved analyzing complex data to uncover insights about activities at the fictional island of Kronos.
 
 ## Project Overview
 
