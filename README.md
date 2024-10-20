@@ -22,7 +22,7 @@ The VAST Challenge is a well-known competition in the visualization community th
 
 The dataset provided by the VAST Challenge 2021 represents various activities on the fictional island of Kronos, including geolocation data, and time-stamped events.
 
-![Demo](Project/vastdemo1.png)
 ![Demo](Project/vastdemo2.png)
+![Demo](Project/vastdemo1.png)
 ![Demo](Project/vastdemo3.png)
 ![Demo](Project/vastdemo4.png)
